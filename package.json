@@ -1,0 +1,22 @@
+{
+  "name": "ecomerce-underc0de",
+  "version": "1.0.0",
+  "description": "pagina web",
+  "main": "index.js",
+  "scripts": {
+    "test": "ventas"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nerea02/ecommersUnderc0de.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nerea02/ecommersUnderc0de/issues"
+  },
+  "homepage": "https://github.com/nerea02/ecommersUnderc0de#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
