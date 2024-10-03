@@ -21,7 +21,7 @@ router.get('/nivel', async (req, res) => {
 router.post('/NuevoNivel', async (req, res) => {
 
     const {DescripcionNivel}= req.body;
-    if(DescripcionNivel==""){
+    if( DescripcionNivel.trim() === "" ||!DescripcionNivel){
         return res.status(400).json({message: "se espera campos que no esten vacios"})
     }
     try {
