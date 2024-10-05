@@ -3,7 +3,7 @@ create database ecommerce;
 USE ecommerce;
 
 create table Niveles (
-IdNiveles int primary key auto_increment,
+IdNivel int primary key auto_increment,
 Descripcion varchar(200) not null
 )
 
@@ -91,7 +91,7 @@ create table VariantesProductos (
 IdVariante  int primary key auto_increment,
 IdTalle int,
 IdProducto int,
-IdClor int,
+IdColor int,
 Cantidad int
 )
 
@@ -116,3 +116,24 @@ ALTER TABLE `ProductosPorVentas` ADD CONSTRAINT `fk_Historial` FOREIGN KEY (`IdH
 REFERENCES `Historial` (`IdHistorial`)
 ON DELETE CASCADE
 ON UPDATE CASCADE;
+
+
+alter table `clientes` add constraint   `fk_idSexo` foreign key (`idSexo`) references  `sexo` (`idSexo`) on delete cascade on update cascade;
+
+alter table `ProductosPorVentas` add constraint   `fk_idHistorial` foreign key (`idHistorial`) references  `Historial` (`idHistorial`) on delete cascade on update cascade;
+
+alter table `Historial` add constraint   `fk_idReintegro` foreign key (`idReintegro`) references  `Reintegro` (`idReintegro`) on delete cascade on update cascade;
+
+alter table `Historial` add constraint   `fk_idMetodoPago` foreign key (`idMetodoPago`) references  `MetodoPago` (`idMetodoPago`) on delete cascade on update cascade;
+
+alter table `ProductosPorVentas` add constraint   `fk_idVariante` foreign key (`idVariante`) references  `VariantesProductos` (`idVariante`) on delete cascade on update cascade;
+
+alter table `VariantesProductos` add constraint   `fk_idTalle` foreign key (`idTalle`) references  `Talle` (`idTalle`) on delete cascade on update cascade;
+
+alter table `VariantesProductos` add constraint   `fk_idColor` foreign key (`idColor`) references  `Color` (`idColor`) on delete cascade on update cascade;
+
+alter table `VariantesProductos` add constraint   `fk_idProducto` foreign key (`idProducto`) references  `Productos` (`idProducto`) on delete cascade on update cascade;
+
+alter table `Productos` add constraint   `fk_idCategoria` foreign key (`idCategoria`) references  `Categorias` (`idCategoria`) on delete cascade on update cascade;
+
+alter table `Productos` add constraint   `fk_idCalificacionProducto` foreign key (`idCalificacionProducto`) references  `CalificacionPorProducto` (`idCalificacionProducto`) on delete cascade on update cascade;
