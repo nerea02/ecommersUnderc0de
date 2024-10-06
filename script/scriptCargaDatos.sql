@@ -1,20 +1,20 @@
 use ecommerce;
 
 
-select * from categorias;
 select * from niveles;
-select * from sexo;
-select * from calificacionporproducto;
-select * from clientes;
-select * from colores;
 select * from historial;
-SELECT * FROM reintegro;
-SELECT * FROM metodopago;
-select * from productos;
-select * from productosporventas;
-select * from talle;
-select * from variantesproductos;
+select * from calificacionporproducto;
+select * from categorias;
+select * from clientes;
 select * from usuario;
+SELECT * FROM metodopago;
+select * from productosporventas;
+select * from productos;
+SELECT * FROM reintegro;
+select * from talle;
+select * from colores;
+select * from sexo;
+select * from variantesproductos;
 
 
 INSERT INTO talle (Talle) 

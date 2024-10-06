@@ -16,7 +16,7 @@ router.get('/nivel', async (req, res) => {
     });
 // Obtener todas las calificaciones por producto
 router.get('/calificaciones', async (req, res) => {
-    const [rows] = await pool.query('SELECT * FROM calificaciones');
+    const [rows] = await pool.query('SELECT * FROM calificacionporproducto');
     res.json(rows);
 });
 // Obtener todas las categorías
