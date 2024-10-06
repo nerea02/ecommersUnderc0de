@@ -1,139 +1,113 @@
-create database ecommerce;
+CREATE DATABASE ecommerce;
 
 USE ecommerce;
 
-create table Niveles (
-IdNivel int primary key auto_increment,
-Descripcion varchar(200) not null
-)
+CREATE TABLE Niveles (
+  IdNivel int PRIMARY KEY AUTO_INCREMENT,
+  Descripcion varchar(200) NOT NULL
+);
 
-create table Sexo (
-IdSexo int primary key auto_increment,
-Descripcion varchar(200) not null
-)
+CREATE TABLE Sexo (
+  IdSexo int PRIMARY KEY AUTO_INCREMENT,
+  Descripcion varchar(200) NOT NULL
+);
 
+CREATE TABLE Clientes (
+  IdCliente int PRIMARY KEY AUTO_INCREMENT,
+  IdSexo int,
+  IdNivel int,
+  FOREIGN KEY(IdSexo) REFERENCES Sexo(IdSexo) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdNivel) REFERENCES Niveles(IdNivel) ON DELETE CASCADE ON UPDATE CASCADE,
+  Estado boolean,
+  DNI int UNIQUE,
+  Nombre varchar(50),
+  Apellido varchar(50),
+  Email varchar(100),
+  Tel varchar(30),
+  Fecha datetime DEFAULT CURRENT_TIMESTAMP,
+  Contraseña varchar(50)
+);
 
-create table Clientes (
-IdCliente int primary key auto_increment,
-IdSexo int,
-IdNivel int,
-foreign key(IdSexo) references sexo (IdSexo) ,
-foreign key(IdNivel) references Niveles (IdNiveles) ,
-Estado boolean,
-DNI int unique,
-Nombre varchar(50),
-Apellido varchar(50),
-Email Varchar(100),
-Tel Varchar(30),
-Fecha datetime,
-Contraseña varchar(50)
-)
+CREATE TABLE MetodoPago (
+  IdMetodoPago int PRIMARY KEY AUTO_INCREMENT,
+  Descripcion varchar(200) NOT NULL
+);
 
-create table MetodoPago (
-IdMetodoPago int primary key auto_increment,
-Descripcion varchar (200) not null
-)
+CREATE TABLE Reintegro (
+  IdReintegro int PRIMARY KEY AUTO_INCREMENT,
+  Fecha datetime DEFAULT CURRENT_TIMESTAMP,
+  Estado boolean
+);
 
-create table Reintegro (
-IdReintegro int primary key auto_increment,
-Fecha datetime,
-Estado boolean
-)
+CREATE TABLE Categorias (
+  IdCategoria int PRIMARY KEY AUTO_INCREMENT,
+  Descripcion varchar(200) NOT NULL
+);
 
-create table Categorias (
-IdCategoria int primary key auto_increment,
-Descripcion varchar (200)not null
-)
+CREATE TABLE CalificacionPorProducto (
+  IdCalificacionProducto int PRIMARY KEY AUTO_INCREMENT,
+  IdProducto int,
+  Calificacion int
+);
 
-create table CalificacionPorProducto (
-IdCalificacionProducto int primary key auto_increment,
-IdProducto int,
-Calificacion int
-)
+CREATE TABLE Talle (
+  IdTalle int PRIMARY KEY AUTO_INCREMENT,
+  Talle varchar(10)
+);
 
-create table Talle (
-IdTalle int primary key auto_increment,
-Talle varchar (10)
-)
+CREATE TABLE Colores (
+  IdColor int PRIMARY KEY AUTO_INCREMENT,
+  Color varchar(15)
+);
 
-create table Color (
-IdColor int primary key auto_increment,
-color varchar (15)
-)
+CREATE TABLE Historial (
+  IdHistorial int PRIMARY KEY AUTO_INCREMENT,
+  IdCliente int,
+  IdReintegro int,
+  Fecha datetime DEFAULT CURRENT_TIMESTAMP,
+  IdMetodoPago int,
+  FOREIGN KEY(IdCliente) REFERENCES Clientes(IdCliente) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdReintegro) REFERENCES Reintegro(IdReintegro) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdMetodoPago) REFERENCES MetodoPago(IdMetodoPago) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-create table Historial (
-IdHistorial int primary key auto_increment,
-IdCliente int,
-IdReintegro int,
-Fecha datetime,
-IdMetodoPago int
-)
+CREATE TABLE ProductosPorVentas (
+  IdProductosPorVenta int PRIMARY KEY AUTO_INCREMENT,
+  IdHistorial int,
+  IdVariante int,
+  Cantidad int,
+  Precio decimal,
+  FOREIGN KEY(IdHistorial) REFERENCES Historial(IdHistorial) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-create table ProductosPorVentas (
-IdProductosPorVenta int primary key auto_increment,
-IdHistorial int,
-IdVariante int,
-Cantidad int,
-Precio decimal
-)
+CREATE TABLE Productos (
+  IdProducto int PRIMARY KEY AUTO_INCREMENT,
+  IdCategoria int,
+  IdCalificacionProducto int,
+  Estado boolean,
+  Nombre varchar(200),
+  Descripcion varchar(200),
+  Precio decimal,
+  FOREIGN KEY(IdCategoria) REFERENCES Categorias(IdCategoria) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdCalificacionProducto) REFERENCES CalificacionPorProducto(IdCalificacionProducto) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-create table Productos (
-IdProducto int primary key auto_increment,
-IdCategoria int,
-IdCalificacionProducto int,
-Estado boolean,
-Nombre varchar (200),
-Descripcion varchar (200),
-Precio decimal
-)
+CREATE TABLE VariantesProductos (
+  IdVariante int PRIMARY KEY AUTO_INCREMENT,
+  IdTalle int,
+  IdProducto int,
+  IdColor int,
+  Cantidad int,
+  FOREIGN KEY(IdTalle) REFERENCES Talle(IdTalle) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdProducto) REFERENCES Productos(IdProducto) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdColor) REFERENCES Colores(IdColor) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
-create table VariantesProductos (
-IdVariante  int primary key auto_increment,
-IdTalle int,
-IdProducto int,
-IdColor int,
-Cantidad int
-)
-
-create table Usuario (
-IdUsuario int primary key auto_increment,
-Nombre varchar (200),
-Apellido varchar (200),
-Dni tinyint,
-Usuario varchar (200),
-Contraseña varchar(200)
-)
-
-ALTER TABLE `Historial`
-ADD CONSTRAINT `fk_Clientes`
-FOREIGN KEY (`IdCliente`)
-REFERENCES `Clientes` (`IdCliente`)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
-
-ALTER TABLE `ProductosPorVentas` ADD CONSTRAINT `fk_Historial` FOREIGN KEY (`IdHistorial`)
-REFERENCES `Historial` (`IdHistorial`)
-ON DELETE CASCADE
-ON UPDATE CASCADE;
-
-
-alter table `clientes` add constraint   `fk_idSexo` foreign key (`idSexo`) references  `sexo` (`idSexo`) on delete cascade on update cascade;
-
-alter table `ProductosPorVentas` add constraint   `fk_idHistorial` foreign key (`idHistorial`) references  `Historial` (`idHistorial`) on delete cascade on update cascade;
-
-alter table `Historial` add constraint   `fk_idReintegro` foreign key (`idReintegro`) references  `Reintegro` (`idReintegro`) on delete cascade on update cascade;
-
-alter table `Historial` add constraint   `fk_idMetodoPago` foreign key (`idMetodoPago`) references  `MetodoPago` (`idMetodoPago`) on delete cascade on update cascade;
-
-alter table `ProductosPorVentas` add constraint   `fk_idVariante` foreign key (`idVariante`) references  `VariantesProductos` (`idVariante`) on delete cascade on update cascade;
-
-alter table `VariantesProductos` add constraint   `fk_idTalle` foreign key (`idTalle`) references  `Talle` (`idTalle`) on delete cascade on update cascade;
-
-alter table `VariantesProductos` add constraint   `fk_idColor` foreign key (`idColor`) references  `Color` (`idColor`) on delete cascade on update cascade;
-
-alter table `VariantesProductos` add constraint   `fk_idProducto` foreign key (`idProducto`) references  `Productos` (`idProducto`) on delete cascade on update cascade;
-
-alter table `Productos` add constraint   `fk_idCategoria` foreign key (`idCategoria`) references  `Categorias` (`idCategoria`) on delete cascade on update cascade;
-
-alter table `Productos` add constraint   `fk_idCalificacionProducto` foreign key (`idCalificacionProducto`) references  `CalificacionPorProducto` (`idCalificacionProducto`) on delete cascade on update cascade;
+CREATE TABLE Usuario (
+  IdUsuario int PRIMARY KEY AUTO_INCREMENT,
+  Nombre varchar(200),
+  Apellido varchar(200),
+  Dni tinyint,
+  Usuario varchar(200),
+  Contraseña varchar(200)
+);
