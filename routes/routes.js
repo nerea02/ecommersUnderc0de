@@ -278,6 +278,14 @@ router.post('/nuevaVarianteProducto', async (req, res) => {
         const [rows] = await pool.query('select c.DNI, c.Nombre, c.Apellido, c.Email, c.Estado, s.Descripcion from clientes as C inner join sexo s ON s.IdSexo =c.IdSexo ');
         res.json(rows);
     });
-
-
+//Obtener Cliente que tiene baja logica
+router.get('/ClientesInactivos', async (req, res) => {
+    const [rows] = await pool.query('select * from clientes c  where c.Estado =0 ');
+    res.json(rows);
+});
+//Obtener Cliente Activos
+router.get('/ClientesActivos', async (req, res) => {
+    const [rows] = await pool.query('select * from clientes c  where c.Estado =1 ');
+    res.json(rows);
+});
 export default router;
