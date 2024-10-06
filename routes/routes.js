@@ -257,4 +257,27 @@ router.post('/nuevaVarianteProducto', async (req, res) => {
         return res.status(500).json({ message: "Error al cargar la variante de producto" + error });
     }
 });
+
+
+
+
+
+//update
+
+
+
+//Delete
+
+
+
+//consultas
+//gets
+
+    //Obtener Cliente y el sexo
+    router.get('/ClienteXSexo', async (req, res) => {
+        const [rows] = await pool.query('select c.DNI, c.Nombre, c.Apellido, c.Email, c.Estado, s.Descripcion from clientes as C inner join sexo s ON s.IdSexo =c.IdSexo ');
+        res.json(rows);
+    });
+
+
 export default router;
