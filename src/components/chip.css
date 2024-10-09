@@ -1,0 +1,21 @@
+.chips-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px 0;
+  }
+  
+  .chip {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .chip:hover {
+    background-color: #d5d5d5;
+  }
+  
