@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .navbar {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f538f; 
+    padding: 10px 20px;
+    color: #ffffff; 
+    flex-wrap: wrap;
+    font-size: 16px;
+  }
+
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+  }
+
+  .nav-links a {
+    margin: 0px 20px;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }

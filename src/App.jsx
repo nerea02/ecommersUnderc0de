@@ -1,11 +1,11 @@
+import ButtonHeader from './components/ButtonHeader.jsx';
 import TopHeader from './components/TopHeader.jsx'; 
-import './components/topHeader.css'; 
-
 
 function App() {
   return (
     <>
       <TopHeader />
+      <ButtonHeader />
     </>
   );
 }
