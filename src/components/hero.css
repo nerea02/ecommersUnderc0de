@@ -1,0 +1,11 @@
+body {
+    margin: 0px;
+}
+
+.hero {
+    background-color: #c2e3e0;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px;
+}
