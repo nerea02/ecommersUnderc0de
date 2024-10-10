@@ -2,6 +2,7 @@ import ButtonHeader from './components/ButtonHeader.jsx';
 import TopHeader from './components/TopHeader.jsx'; 
 import Hero from './components/Hero.jsx'; 
 import Chip from './components/Chip.jsx'; 
+import Footer from './components/Footer.jsx'; 
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <ButtonHeader />
       <Hero />
       <Chip />
+      <Footer />
     </>
   );
 }
