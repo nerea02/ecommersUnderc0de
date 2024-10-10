@@ -1,0 +1,54 @@
+.card{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sub-card {
+    width: 300px;
+    gap: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    overflow: hidden;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fff;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+}
+
+.info {
+    padding: 15px;
+}
+
+.info h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.price {
+    color: #0f538f;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    background-color: #0f538f;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.add-to-cart:hover {
+    background-color: #266599;
+}
