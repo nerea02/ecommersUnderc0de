@@ -11,7 +11,7 @@ export default function Index() {
       <TopHeader />
       <ButtonHeader />
       <div className="contenedorIndex">
-        <div className=" " style={{ backgroundColor: "#e3f5f3" }}>
+        <div className=" " style={{ backgroundColor: "#F5F7FA" }}>
           <Hero />
 
           <Chip />
