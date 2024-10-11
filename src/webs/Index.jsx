@@ -16,11 +16,7 @@ export default function Index() {
 
           <Chip />
           <div className="pt-5 pb-5">
-            <Card
-              image="./remeraUnder.jpg"
-              name="Remera Underc0de"
-              price="30.000"
-            />
+            <Card image="./remeraUnder.jpg" price="30.000" />
           </div>
         </div>
       </div>
