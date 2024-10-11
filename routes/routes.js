@@ -759,266 +759,6 @@ router.put('/actualizarProducto/:id', async (req, res) => {
 });
 
 
-//Delete
-
-router.delete('/eliminarNivel/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del nivel a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Niveles WHERE IdNivel = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Nivel no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Nivel eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar nivel:', error);
-        return res.status(500).json({ message: 'Error al eliminar nivel', error: error.message });
-    }
-});
-router.delete('/eliminarSexo/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del sexo a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Sexo WHERE IdSexo = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Sexo no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Sexo eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar sexo:', error);
-        return res.status(500).json({ message: 'Error al eliminar sexo', error: error.message });
-    }
-});
-router.delete('/eliminarCliente/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del cliente a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Clientes WHERE IdCliente = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Cliente no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Cliente eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar cliente:', error);
-        return res.status(500).json({ message: 'Error al eliminar cliente', error: error.message });
-    }
-});
-router.delete('/eliminarMetodoPago/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del método de pago a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM MetodoPago WHERE IdMetodoPago = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Método de pago no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Método de pago eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar método de pago:', error);
-        return res.status(500).json({ message: 'Error al eliminar método de pago', error: error.message });
-    }
-});
-router.delete('/eliminarReintegro/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del reintegro a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Reintegro WHERE IdReintegro = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Reintegro no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Reintegro eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar reintegro:', error);
-        return res.status(500).json({ message: 'Error al eliminar reintegro', error: error.message });
-    }
-});
-router.delete('/eliminarCategoria/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID de la categoría a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Categorias WHERE IdCategoria = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Categoría no encontrada" });
-        }
-
-        return res.status(200).json({ message: "Categoría eliminada exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar categoría:', error);
-        return res.status(500).json({ message: 'Error al eliminar categoría', error: error.message });
-    }
-});
-router.delete('/eliminarCalificacion/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID de la calificación a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM CalificacionPorProducto WHERE IdCalificacionProducto = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Calificación no encontrada" });
-        }
-
-        return res.status(200).json({ message: "Calificación eliminada exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar calificación:', error);
-        return res.status(500).json({ message: 'Error al eliminar calificación', error: error.message });
-    }
-});
-router.delete('/eliminarTalle/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del talle a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Talle WHERE IdTalle = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Talle no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Talle eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar talle:', error);
-        return res.status(500).json({ message: 'Error al eliminar talle', error: error.message });
-    }
-});
-router.delete('/eliminarColor/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del color a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Colores WHERE IdColor = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Color no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Color eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar color:', error);
-        return res.status(500).json({ message: 'Error al eliminar color', error: error.message });
-    }
-});
-router.delete('/eliminarHistorial/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del historial a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Historial WHERE IdHistorial = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Historial no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Historial eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar historial:', error);
-        return res.status(500).json({ message: 'Error al eliminar historial', error: error.message });
-    }
-});
-router.delete('/eliminar/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del registro a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM ProductosPorVentas WHERE IdProductosPorVenta = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Registro no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Registro eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar registro de ProductosPorVentas:', error);
-        return res.status(500).json({ message: 'Error al eliminar registro', error: error.message });
-    }
-});
-router.delete('/eliminar/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del registro a eliminar
-
-    try {
-        const [result] = await pool.query('DELETE FROM Productos WHERE IdProducto = ?', [id]);
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Registro no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Registro eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar registro de Productos:', error);
-        return res.status(500).json({ message: 'Error al eliminar registro', error: error.message });
-    }
-});
-// Ruta para eliminar un registro de VariantesProductos
-router.delete('/eliminar/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del registro a eliminar
-
-    try {
-        const [result] = await pool.query(
-            'DELETE FROM VariantesProductos WHERE IdVariante = ?',
-            [id]
-        );
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Registro no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Registro eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar registro de VariantesProductos:', error);
-        return res.status(500).json({ message: 'Error al eliminar registro', error: error.message });
-    }
-});
-// Ruta para eliminar un registro de Usuario
-router.delete('/eliminar/:id', async (req, res) => {
-    const { id } = req.params; // Obtener el ID del registro a eliminar
-
-    try {
-        const [result] = await pool.query(
-            'DELETE FROM Usuario WHERE IdUsuario = ?',
-            [id]
-        );
-
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Registro no encontrado" });
-        }
-
-        return res.status(200).json({ message: "Registro eliminado exitosamente" });
-    } catch (error) {
-        console.error('Error al eliminar registro de Usuario:', error);
-        return res.status(500).json({ message: 'Error al eliminar registro', error: error.message });
-    }
-});
-
-
-//consultas
-//gets
-
-    //Obtener Cliente y el sexo
-    router.get('/ClienteXSexo', async (req, res) => {
-        const [rows] = await pool.query('select c.DNI, c.Nombre, c.Apellido, c.Email, c.Estado, s.Descripcion from clientes as C inner join sexo s ON s.IdSexo =c.IdSexo ');
-        res.json(rows);
-    });
-//Obtener Cliente que tiene baja logica
-router.get('/ClientesInactivos', async (req, res) => {
-    const [rows] = await pool.query('select * from clientes c  where c.Estado =0 ');
-    res.json(rows);
-});
-//Obtener Cliente Activos
-router.get('/ClientesActivos', async (req, res) => {
-    const [rows] = await pool.query('select * from clientes c  where c.Estado =1 ');
-    res.json(rows);
-});
-
-
-
-
-
-
 //actualizar estado
 
 router.put('/BajaLogicaNivel', async (req, res) => {
@@ -1057,6 +797,617 @@ router.put('/AltaLogicaNivel', async (req, res) => {
         return res.status(500).json({ message: 'Error al actualizar nivel', error: error.message });
     }
 });
+router.put('/AltaLogicaSexo', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del nivel a actualizar
+   
+
+    try {
+        const query = 'UPDATE Niveles SET Estado = 1 WHERE IdSexo = ?';
+        const [result] = await pool.query(query, [ id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Sexo no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Sexo actualizado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar sexo:', error);
+        return res.status(500).json({ message: 'Error al actualizar sexo', error: error.message });
+    }
+});
+router.put('/BajaLogicaSexo', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del nivel a actualizar
+   
+
+    try {
+        const query = 'UPDATE Niveles SET Estado = 0 WHERE IdSexo = ?';
+        const [result] = await pool.query(query, [ id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Sexo no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Sexo actualizado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar nivel:', error);
+        return res.status(500).json({ message: 'Error al actualizar Sexo', error: error.message });
+    }
+});
+router.put('/AltaLogicaClientes', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del nivel a actualizar
+   
+
+    try {
+        const query = 'UPDATE Cliente SET Estado = 1 WHERE IdCliente = ?';
+        const [result] = await pool.query(query, [ id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "cliente no encontrado" });
+        }
+
+        return res.status(200).json({ message: "cliente actualizado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar sexo:', error);
+        return res.status(500).json({ message: 'Error al actualizar cliente', error: error.message });
+    }
+});
+router.put('/BajaLogicaCliente', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del nivel a actualizar
+   
+
+    try {
+        const query = 'UPDATE Cliente SET Estado = 0 WHERE IdCliente = ?';
+        const [result] = await pool.query(query, [ id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Cliente no encontrado" });
+        }
+
+        return res.status(200).json({ message: "cliente actualizado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar cliente:', error);
+        return res.status(500).json({ message: 'Error al actualizar cliente', error: error.message });
+    }
+});
+
+router.put('/AltaLogicaMetodoPago', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del método de pago a actualizar
+
+    try {
+        const query = 'UPDATE MetodoPago SET Estado = 1 WHERE IdMetodoPago = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Método de pago no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Método de pago activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del método de pago:', error);
+        return res.status(500).json({ message: 'Error al actualizar método de pago', error: error.message });
+    }
+});
+router.put('/BajaLogicaMetodoPago', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del método de pago a actualizar
+
+    try {
+        const query = 'UPDATE MetodoPago SET Estado = 0 WHERE IdMetodoPago = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Método de pago no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Método de pago desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del método de pago:', error);
+        return res.status(500).json({ message: 'Error al actualizar método de pago', error: error.message });
+    }
+});
+router.put('/AltaLogicaReintegro', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del reintegro a actualizar
+
+    try {
+        const query = 'UPDATE Reintegro SET Estado = 1 WHERE IdReintegro = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Reintegro no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Reintegro activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del reintegro:', error);
+        return res.status(500).json({ message: 'Error al actualizar reintegro', error: error.message });
+    }
+});
+router.put('/BajaLogicaReintegro', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del reintegro a actualizar
+
+    try {
+        const query = 'UPDATE Reintegro SET Estado = 0 WHERE IdReintegro = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Reintegro no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Reintegro desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del reintegro:', error);
+        return res.status(500).json({ message: 'Error al actualizar reintegro', error: error.message });
+    }
+});
+router.put('/AltaLogicaCategorias', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la categoría a actualizar
+
+    try {
+        const query = 'UPDATE Categorias SET Estado = 1 WHERE IdCategoria = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Categoría no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Categoría activada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la categoría:', error);
+        return res.status(500).json({ message: 'Error al actualizar categoría', error: error.message });
+    }
+});
+router.put('/BajaLogicaCategorias', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la categoría a actualizar
+
+    try {
+        const query = 'UPDATE Categorias SET Estado = 0 WHERE IdCategoria = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Categoría no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Categoría desactivada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la categoría:', error);
+        return res.status(500).json({ message: 'Error al actualizar categoría', error: error.message });
+    }
+});
+router.put('/AltaLogicaCalificacionPorProducto', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la calificación a actualizar
+
+    try {
+        const query = 'UPDATE CalificacionPorProducto SET Estado = 1 WHERE IdCalificacionProducto = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Calificación no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Calificación activada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la calificación:', error);
+        return res.status(500).json({ message: 'Error al actualizar calificación', error: error.message });
+    }
+});
+router.put('/BajaLogicaCalificacionPorProducto', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la calificación a actualizar
+
+    try {
+        const query = 'UPDATE CalificacionPorProducto SET Estado = 0 WHERE IdCalificacionProducto = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Calificación no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Calificación desactivada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la calificación:', error);
+        return res.status(500).json({ message: 'Error al actualizar calificación', error: error.message });
+    }
+});
+router.put('/AltaLogicaTalle', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del talle a actualizar
+
+    try {
+        const query = 'UPDATE Talle SET Estado = 1 WHERE IdTalle = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Talle no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Talle activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del talle:', error);
+        return res.status(500).json({ message: 'Error al actualizar talle', error: error.message });
+    }
+});
+router.put('/BajaLogicaTalle', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del talle a actualizar
+
+    try {
+        const query = 'UPDATE Talle SET Estado = 0 WHERE IdTalle = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Talle no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Talle desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del talle:', error);
+        return res.status(500).json({ message: 'Error al actualizar talle', error: error.message });
+    }
+});
+router.put('/AltaLogicaColores', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del color a actualizar
+
+    try {
+        const query = 'UPDATE Colores SET Estado = 1 WHERE IdColor = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Color no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Color activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del color:', error);
+        return res.status(500).json({ message: 'Error al actualizar color', error: error.message });
+    }
+});
+router.put('/BajaLogicaColores', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del color a actualizar
+
+    try {
+        const query = 'UPDATE Colores SET Estado = 0 WHERE IdColor = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Color no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Color desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del color:', error);
+        return res.status(500).json({ message: 'Error al actualizar color', error: error.message });
+    }
+});
+router.put('/AltaLogicaHistorial', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del historial a actualizar
+
+    try {
+        const query = 'UPDATE Historial SET Estado = 1 WHERE IdHistorial = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Historial no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Historial activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del historial:', error);
+        return res.status(500).json({ message: 'Error al actualizar historial', error: error.message });
+    }
+});
+router.put('/BajaLogicaHistorial', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del historial a actualizar
+
+    try {
+        const query = 'UPDATE Historial SET Estado = 0 WHERE IdHistorial = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Historial no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Historial desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del historial:', error);
+        return res.status(500).json({ message: 'Error al actualizar historial', error: error.message });
+    }
+});
+router.put('/AltaLogicaProductosPorVentas', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del producto por venta a actualizar
+
+    try {
+        const query = 'UPDATE ProductosPorVentas SET Estado = 1 WHERE IdProductosPorVenta = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Producto por venta no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Producto por venta activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del producto por venta:', error);
+        return res.status(500).json({ message: 'Error al actualizar producto por venta', error: error.message });
+    }
+});
+router.put('/BajaLogicaProductosPorVentas', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del producto por venta a actualizar
+
+    try {
+        const query = 'UPDATE ProductosPorVentas SET Estado = 0 WHERE IdProductosPorVenta = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Producto por venta no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Producto por venta desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del producto por venta:', error);
+        return res.status(500).json({ message: 'Error al actualizar producto por venta', error: error.message });
+    }
+});
+router.put('/AltaLogicaProductos', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del producto a actualizar
+
+    try {
+        const query = 'UPDATE Productos SET Estado = 1 WHERE IdProducto = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Producto no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Producto activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del producto:', error);
+        return res.status(500).json({ message: 'Error al actualizar producto', error: error.message });
+    }
+});
+router.put('/BajaLogicaProductos', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del producto a actualizar
+
+    try {
+        const query = 'UPDATE Productos SET Estado = 0 WHERE IdProducto = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Producto no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Producto desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del producto:', error);
+        return res.status(500).json({ message: 'Error al actualizar producto', error: error.message });
+    }
+});
+router.put('/AltaLogicaVariantesProductos', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la variante a actualizar
+
+    try {
+        const query = 'UPDATE VariantesProductos SET Estado = 1 WHERE IdVariante = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Variante no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Variante activada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la variante:', error);
+        return res.status(500).json({ message: 'Error al actualizar variante', error: error.message });
+    }
+});
+router.put('/BajaLogicaVariantesProductos', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la variante a actualizar
+
+    try {
+        const query = 'UPDATE VariantesProductos SET Estado = 0 WHERE IdVariante = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Variante no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Variante desactivada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la variante:', error);
+        return res.status(500).json({ message: 'Error al actualizar variante', error: error.message });
+    }
+});
+router.put('/AltaLogicaUsuario', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del usuario a actualizar
+
+    try {
+        const query = 'UPDATE Usuario SET Estado = 1 WHERE IdUsuario = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Usuario activado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del usuario:', error);
+        return res.status(500).json({ message: 'Error al actualizar usuario', error: error.message });
+    }
+});
+router.put('/BajaLogicaUsuario', async (req, res) => {
+    const { id } = req.body; // Obtener el ID del usuario a actualizar
+
+    try {
+        const query = 'UPDATE Usuario SET Estado = 0 WHERE IdUsuario = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        return res.status(200).json({ message: "Usuario desactivado exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado del usuario:', error);
+        return res.status(500).json({ message: 'Error al actualizar usuario', error: error.message });
+    }
+});
+
+
+
+
+
+//consultas
+//gets
+
+    //Obtener Cliente y el sexo
+router.get('/ClienteXSexo', async (req, res) => {
+    const [rows] = await pool.query('select c.DNI, c.Nombre, c.Apellido, c.Email, c.Estado, s.Descripcion from clientes as C inner join sexo s ON s.IdSexo =c.IdSexo ');
+    res.json(rows);
+    });
+//Obtener Cliente que tiene baja logica
+router.get('/ClientesInactivos', async (req, res) => {
+    const [rows] = await pool.query('select * from clientes c  where c.Estado =0 ');
+    res.json(rows);
+});
+//Obtener Cliente Activos
+router.get('/ClientesActivos', async (req, res) => {
+    const [rows] = await pool.query('select * from clientes c  where c.Estado =1 ');
+    res.json(rows);
+});
+router.get('/ClientesXNivel', async (req, res) => {
+    const [rows] = await pool.query(
+        `SELECT c.DNI, c.Nombre, c.Apellido, c.Email, c.Estado, n.Descripcion FROM Clientes AS c INNER JOIN Niveles AS n ON n.IdNivel = c.IdNivel`
+    );
+    res.json(rows);
+});
+router.get('/ClientesInactivosXNivel', async (req, res) => {
+    const [rows] = await pool.query(
+        `SELECT c.DNI, c.Nombre, c.Apellido, c.Email, c.Estado, n.Descripcion FROM Clientes AS c INNER JOIN Niveles AS n ON n.IdNivel = c.IdNivel WHERE c.Estado = 0`
+    );
+    res.json(rows);
+});
+router.get('/ClientesHistorial', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT c.DNI, c.Nombre, c.Apellido, h.IdHistorial, h.Fecha AS FechaHistorial, h.IdReintegro, h.IdMetodoPago  FROM Historial AS hINNER JOIN Clientes AS c ON h.IdCliente = c.IdCliente`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener historial de clientes:', error);
+        res.status(500).json({ message: 'Error al obtener historial de clientes', error: error.message });
+    }
+});
+router.get('/HistorialProductosPorVentas', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT ppv.IdProductosPorVenta, ppv.Cantidad, ppv.Precio, h.IdHistorial, h.Fecha AS FechaHistorial, h.IdCliente, h.IdReintegro, h.IdMetodoPago  FROM  ProductosPorVentas AS ppv LEFT JOIN Historial AS h ON ppv.IdHistorial = h.IdHistorial`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener historial y productos por ventas:', error);
+        res.status(500).json({ message: 'Error al obtener historial y productos por ventas', error: error.message });
+    }
+});
+router.get('/HistorialMetodoPago', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT h.IdHistorial, h.Fecha AS FechaHistorial, h.IdCliente, h.IdReintegro, h.IdMetodoPago, mp.Descripcion AS MetodoPago  FROM  Historial AS h INNER JOIN  MetodoPago AS mp ON h.IdMetodoPago = mp.IdMetodoPago`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener historial y método de pago:', error);
+        res.status(500).json({ message: 'Error al obtener historial y método de pago', error: error.message });
+    }
+});
+router.get('/HistorialReintegro', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT h.IdHistorial, h.Fecha AS FechaHistorial, h.IdCliente, r.Fecha AS FechaReintegro, r.Estado AS EstadoReintegro  FROM Historial AS h INNER JOIN  Reintegro AS r ON h.IdReintegro = r.IdReintegro`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener historial y reintegro:', error);
+        res.status(500).json({ message: 'Error al obtener historial y reintegro', error: error.message });
+    }
+});
+router.get('/VariantesProductosVentas', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT p.IdProductosPorVenta,p.IdHistorial,v.IdVariante,v.IdTalle,v.IdProducto,v.IdColor,v.Cantidad AS StockVariante,p.Cantidad AS CantidadVendida,p.Precio FROM ProductosPorVentas AS p INNER JOIN VariantesProductos AS v ON p.IdVariante = v.IdVariante`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener variantes de productos y ventas:', error);
+        res.status(500).json({ message: 'Error al obtener variantes de productos y ventas', error: error.message });
+    }
+});
+router.get('/VariantesProductosColores', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT v.IdVariante,v.IdTalle,v.IdProducto,v.Cantidad AS StockVariante,c.Color FROM VariantesProductos AS v INNER JOIN  Colores AS c ON v.IdColor = c.IdColor`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener variantes de productos y colores:', error);
+        res.status(500).json({ message: 'Error al obtener variantes de productos y colores', error: error.message });
+    }
+});
+router.get('/VariantesProductosTalles', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT v.IdVariante,v.IdProducto,v.Cantidad AS StockVariante,t.Talle AS DescripcionTalle FROM VariantesProductos AS v INNER JOIN  Talle AS t ON v.IdTalle = t.IdTalle`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener variantes de productos y talles:', error);
+        res.status(500).json({ message: 'Error al obtener variantes de productos y talles', error: error.message });
+    }
+});
+router.get('/VariantesProductos', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT v.IdVariante,p.Nombre AS Producto,p.Descripcion,p.Precio,v.Cantidad AS StockVariante,t.Talle,c.Color  FROM VariantesProductos AS v INNER JOIN Productos AS p ON v.IdProducto = p.IdProducto INNER JOIN Talle AS t ON v.IdTalle = t.IdTalle INNER JOIN
+                Colores AS c ON v.IdColor = c.IdColor`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener las variantes de productos:', error);
+        res.status(500).json({ message: 'Error al obtener las variantes de productos', error: error.message });
+    }
+});
+//La función AVG() calcula el promedio de las calificaciones de cada producto.
+//El GROUP BY asegura que las calificaciones se agrupen por producto.
+//Si un producto no tiene calificaciones, puedes manejarlo mostrando un valor NULL o ajustar la consulta para mostrar un valor predeterminado.
+router.get('/ProductosConCalificaciones', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT p.Nombre AS Producto,p.Descripcion,p.Precio,p.Estado, AVG(c.Calificacion) AS CalificacionPromedio FROM Productos AS p INNER JOIN CalificacionPorProducto AS c ON p.IdProducto = c.IdProducto GROUP BY 
+                p.IdProducto, p.Nombre, p.Descripcion, p.Precio, p.Estado`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener los productos con calificaciones:', error);
+        res.status(500).json({ message: 'Error al obtener los productos con calificaciones', error: error.message });
+    }
+});
+router.get('/ProductosConCategorias', async (req, res) => {
+    try {
+        const [rows] = await pool.query(
+            `SELECT p.Nombre AS Producto,p.Descripcion,p.Precio,p.Estado,c.Descripcion AS Categoria FROM Productos AS p INNER JOIN Categorias AS c ON p.IdCategoria = c.IdCategoria`
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error('Error al obtener los productos con categorías:', error);
+        res.status(500).json({ message: 'Error al obtener los productos con categorías', error: error.message });
+    }
+});
+
+
+
+
 
 
 
