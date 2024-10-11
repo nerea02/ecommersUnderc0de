@@ -18,12 +18,6 @@ function App() {
        name="Remera Underc0de" 
        price="30.000" 
       />
-
-      <Card 
-       image="./tazaUnder.jpg" 
-       name="Taza Underc0de" 
-       price="8.000" 
-      />
       <Footer />
     </>
   );
