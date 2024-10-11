@@ -1,23 +1,16 @@
-import ButtonHeader from './components/ButtonHeader.jsx';
-import TopHeader from './components/TopHeader.jsx'; 
-import Hero from './components/Hero.jsx'; 
-import Chip from './components/Chip.jsx'; 
-import Footer from './components/Footer.jsx'; 
-import Card from './components/Card.jsx'; 
-
+import Footer from "./components/Footer";
+import Index from "./webs";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <TopHeader />
-      <ButtonHeader />
-      <Hero />
-      <Chip />
-      <Card 
-       image="./remeraUnder.jpg" 
-       name="Remera Underc0de" 
-       price="30.000" 
-      />
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Index />} />
+        </Routes>
+      </BrowserRouter>
       <Footer />
     </>
   );

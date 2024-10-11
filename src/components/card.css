@@ -1,31 +1,22 @@
-.card{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-}
 
-.sub-card {
-    width: 300px;
-    gap: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    overflow: hidden;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #fff;
-}
+
+
+
+
+
+
+
+
+
 
 .image {
-    width: 100%;
+    width: 60%;
     height: auto;
 }
 
 .info {
-    padding: 15px;
+    padding: 15px; 
+    box-sizing: border-box;
 }
 
 .info h2 {
@@ -51,4 +42,20 @@
 
 .add-to-cart:hover {
     background-color: #266599;
+}
+
+
+
+.card{
+
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: rotateY(10deg);
+    transition: transform 0.3s;
+  
+ 
+}
+.card:hover{
+    transform: rotateY(0deg);
+
 }
