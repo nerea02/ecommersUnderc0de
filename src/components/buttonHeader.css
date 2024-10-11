@@ -31,15 +31,7 @@ body {
     width: 30px;
     height: 30px;
   }
-  .Opciones{
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-    height: 100%;
-  }
-  li{
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-    height: 100%;
-  }
+ .ulNav{
+  padding: 0;
+  margin: 0;
+ }

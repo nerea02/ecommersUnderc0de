@@ -3,7 +3,7 @@ import "./topHeader.css";
 const TopHeader = () => {
   return (
     <header className="top-header">
-      <div className="logo">
+      <div className="logo d-flex align-items-center">
         <h1>
           underc<span className="highlight">0</span>de
         </h1>
