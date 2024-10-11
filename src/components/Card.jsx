@@ -2,7 +2,7 @@ import Btn from "./Btn";
 import { useState, useEffect } from "react";
 import "./card.css";
 
-const Card = ({ image, price }) => {
+const Card = ({ image }) => {
   const [productos, setProductos] = useState([]); // Inicializa como array vacío
   const [error, setError] = useState(null); // Estado para errores
 
