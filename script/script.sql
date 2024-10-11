@@ -52,7 +52,7 @@ CREATE TABLE Categorias (
 CREATE TABLE CalificacionPorProducto (
   IdCalificacionProducto int PRIMARY KEY AUTO_INCREMENT,
   IdProducto int,
-  Calificacion int,
+  Calificacion int ,
   Estado boolean DEFAULT true
 );
 
@@ -96,6 +96,7 @@ CREATE TABLE Productos (
   IdCalificacionProducto int,
   Nombre varchar(200),
   Descripcion varchar(200),
+  Imagen varchar(300),
   Precio decimal,
   Estado boolean DEFAULT true,
   FOREIGN KEY(IdCategoria) REFERENCES Categorias(IdCategoria) ON DELETE CASCADE ON UPDATE CASCADE,
