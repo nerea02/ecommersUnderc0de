@@ -12,7 +12,7 @@ export default function Index() {
       <ButtonHeader />
       <div className="contenedorIndex">
         <div className=" " style={{ backgroundColor: "#F5F7FA" }}>
-          <Hero />
+          <Hero porcentaje={30} />
 
           <Chip />
           <div className="pt-5 pb-5">

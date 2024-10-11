@@ -1,12 +1,12 @@
 import "./hero.css";
 
-const Hero = () => {
+const Hero = ({ porcentaje }) => {
   return (
     <div className="hero">
       <div className="sub-hero">
         <div className="text-content">
           <h1>"Exclusivo para miembros PRO"</h1>
-          <p>¡20% de descuento en remeras y gorras!</p>
+          <p>¡{porcentaje}% de descuento en remeras y gorras!</p>
         </div>
         <img
           src="logoUnderc0de.png"
