@@ -1,4 +1,5 @@
 import "./ButtonHeader.css";
+import Carrito from "./Carrito";
 
 const ButtonHeader = () => {
   return (
@@ -30,11 +31,7 @@ const ButtonHeader = () => {
               CONTACTO
             </a>
           </li>
-          <li className="d-flex align-items-center">
-            <a href="/">
-              <img src="../carrito.png" alt="Carrito" />
-            </a>
-          </li>
+          <Carrito />
         </ul>
       </nav>
     </header>

@@ -1,12 +1,16 @@
 import Btn from "./Btn";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./card.css";
 import ComponenteSkeleton from "./SkeletonCard";
+import { useCountStore } from "../store/ContadorCarrito";
 
 const Card = ({ image }) => {
   const [productos, setProductos] = useState([]); // Inicializa como array vacío
   const [error, setError] = useState(null); // Estado para errores
   const [estadoApi, setEstadoApi] = useState(false); // Estado para errores
+
+  const { sumar } = useCountStore();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,6 +32,7 @@ const Card = ({ image }) => {
     fetchData(); // Llama a la función fetchData
   }, []);
   console.log(productos);
+
   if (!estadoApi) {
     return (
       <>
@@ -50,7 +55,9 @@ const Card = ({ image }) => {
               <p className="price">
                 {producto.Descripcion ? producto.Descripcion : ""}
               </p>
-              <Btn Texto="Agregar al Carrito" />
+              <div onClick={sumar}>
+                <Btn Texto="Agregar al Carrito" />
+              </div>
             </div>
           </div>
         ))}
