@@ -1,0 +1,8 @@
+.login{
+    min-height: 100% !important;
+}
+.LoginFooter{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

@@ -4,6 +4,7 @@ import Hero from "../components/Hero.jsx";
 import Chip from "../components/Chip.jsx";
 import "./index.css";
 import Card from "../components/Card.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function Index() {
   return (
@@ -20,6 +21,7 @@ export default function Index() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
