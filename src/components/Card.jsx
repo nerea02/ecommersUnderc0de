@@ -8,7 +8,7 @@ const Card = ({ image }) => {
   const [productos, setProductos] = useState([]); // Inicializa como array vacío
   const [error, setError] = useState(null); // Estado para errores
   const [estadoApi, setEstadoApi] = useState(false); // Estado para errores
-
+  const [valor, setValor] = useState(0);
   const { sumar } = useCountStore();
 
   useEffect(() => {
@@ -36,6 +36,14 @@ const Card = ({ image }) => {
     fetchData(); // Llama a la función fetchData
   }, []);
 
+  const cantidad = (event) => {
+    const newValue = parseInt(event.target.value, 10);
+
+    if (newValue >= 0 && newValue <= 10) {
+      setValor(newValue);
+    }
+  };
+
   if (!estadoApi) {
     return (
       <>
@@ -58,7 +66,14 @@ const Card = ({ image }) => {
               <p className="price">
                 {producto.Descripcion ? producto.Descripcion : ""}
               </p>
-              <div onClick={() => sumar(1)}>
+              <input
+                type="number"
+                min={0}
+                max={10}
+                onChange={cantidad}
+                value={valor}
+              />
+              <div onClick={() => sumar(valor)}>
                 <Btn Texto="Agregar al Carrito" />
               </div>
             </div>
