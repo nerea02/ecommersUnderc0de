@@ -58,7 +58,7 @@ const Card = ({ image }) => {
               <p className="price">
                 {producto.Descripcion ? producto.Descripcion : ""}
               </p>
-              <div onClick={sumar}>
+              <div onClick={() => sumar(1)}>
                 <Btn Texto="Agregar al Carrito" />
               </div>
             </div>
