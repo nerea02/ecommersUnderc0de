@@ -5,3 +5,9 @@ export const useCountStore = create((set) => ({
   sumar: (value) => set((state) => ({ count: state.count + value,  })),
   restar: (value) => set((state) => ({ count: state.count - value, })),
 }));
+
+export const useCargarTalle = create((set) => ({
+  count: "",
+  talle: (value) => set((state) => ({ count: state.count = value,  })),
+  
+}));
