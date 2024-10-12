@@ -22,7 +22,11 @@ const Card = ({ image }) => {
         const data = await response.json();
         console.log(data);
         setProductos(data);
-        setEstadoApi(true);
+
+        const timeoutId = setTimeout(() => {
+          setEstadoApi(true);
+        }, 2000);
+        return () => clearTimeout(timeoutId);
       } catch (error) {
         console.log("error");
         setError(error.message);
@@ -31,7 +35,6 @@ const Card = ({ image }) => {
 
     fetchData(); // Llama a la función fetchData
   }, []);
-  console.log(productos);
 
   if (!estadoApi) {
     return (
