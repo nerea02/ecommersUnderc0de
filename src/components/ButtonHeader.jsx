@@ -1,36 +1,17 @@
 import "./ButtonHeader.css";
 import Carrito from "./Carrito";
+import OpcionesHeader from "./OpcionesHeaders";
 
 const ButtonHeader = () => {
   return (
     <header>
       <nav className="navbar">
         <ul className="nav-links ulNav d-flex align-items-center">
-          <li className="d-flex align-items-center">
-            <a className="roboto-medium" href="">
-              INICIO
-            </a>
-          </li>
-          <li className="d-flex align-items-center">
-            <a className="roboto-medium" href="./producto">
-              PRODUCTO
-            </a>
-          </li>
-          <li className="d-flex align-items-center">
-            <a className="roboto-medium" href="./nuevasTendencias">
-              NUEVAS TENDENCIAS
-            </a>
-          </li>
-          <li className="d-flex align-items-center">
-            <a className="roboto-medium" href="./sobreNosotros">
-              SOBRE NOSOTROS
-            </a>
-          </li>
-          <li className="d-flex align-items-center">
-            <a className="roboto-medium" href="./contacto">
-              CONTACTO
-            </a>
-          </li>
+          <OpcionesHeader opcione="INICIO" />
+          <OpcionesHeader opcione="PRODUCTO" />
+          <OpcionesHeader opcione="NUEVAS TENDENCIAS" />
+          <OpcionesHeader opcione="SOBRE NOSOTROS" />
+          <OpcionesHeader opcione="CONTACTO" />
           <Carrito />
         </ul>
       </nav>
