@@ -757,7 +757,7 @@ router.put('/BajaLogicaSexo', async (req, res) => {
    
 
     try {
-        const query = 'UPDATE Niveles SET Estado = 0 WHERE IdSexo = ?';
+        const query = 'UPDATE sexo SET Estado = 0 WHERE IdSexo = ?';
         const [result] = await pool.query(query, [ id]);
 
         if (result.affectedRows === 0) {
