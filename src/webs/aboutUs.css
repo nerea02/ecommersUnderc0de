@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.bg-image {
+    background: url('/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    z-index: 2;
+    position: relative;
+}
