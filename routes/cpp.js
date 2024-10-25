@@ -65,6 +65,40 @@ router.get('/ProductosConCalificaciones', async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los productos con calificaciones', error: error.message });
     }
 });
+router.put('/AltaLogicaCalificacionPorProducto', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la calificación a actualizar
+
+    try {
+        const query = 'UPDATE CalificacionPorProducto SET Estado = 1 WHERE IdCalificacionProducto = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Calificación no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Calificación activada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la calificación:', error);
+        return res.status(500).json({ message: 'Error al actualizar calificación', error: error.message });
+    }
+});
+router.put('/BajaLogicaCalificacionPorProducto', async (req, res) => {
+    const { id } = req.body; // Obtener el ID de la calificación a actualizar
+
+    try {
+        const query = 'UPDATE CalificacionPorProducto SET Estado = 0 WHERE IdCalificacionProducto = ?';
+        const [result] = await pool.query(query, [id]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Calificación no encontrada" });
+        }
+
+        return res.status(200).json({ message: "Calificación desactivada exitosamente" });
+    } catch (error) {
+        console.error('Error al actualizar el estado de la calificación:', error);
+        return res.status(500).json({ message: 'Error al actualizar calificación', error: error.message });
+    }
+});
 
 
 export default router;
