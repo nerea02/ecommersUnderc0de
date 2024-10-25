@@ -1,4 +1,5 @@
 import TopHeader from "../components/TopHeader.jsx";
+import ButtonHeader from "../components/ButtonHeader.jsx";
 import Footer from "../components/Footer.jsx";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,7 @@ export default function NewTrends() {
   return (
     <>
       <TopHeader />
+      <ButtonHeader />
       <div
         className="bg-light"
         style={{
