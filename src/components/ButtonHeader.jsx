@@ -5,7 +5,7 @@ import OpcionesHeader from "./OpcionesHeaders";
 const ButtonHeader = () => {
   return (
     <header>
-      <nav className="navbar">
+      <nav className="d-flex justify-content-center navbar">
         <ul className="nav-links ulNav d-flex align-items-center">
           <OpcionesHeader opcione="INICIO" />
           <OpcionesHeader opcione="PRODUCTO" />
