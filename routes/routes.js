@@ -1,7 +1,14 @@
 import { Router } from "express";
+import { loginUser, registerUser } from "../auth/authController.js";
 import { pool } from "../db.js";
 
 const router = Router();
+// Ruta para registrar un nuevo cliente
+router.post('/register', registerUser);
+
+// Ruta para iniciar sesión
+router.post('/login', loginUser);
+
 
 
 
