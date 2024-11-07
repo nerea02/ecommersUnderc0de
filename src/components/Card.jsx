@@ -1,10 +1,8 @@
-import Btn from "./Btn";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import ModalAgregarCarrito from "./ModalAgregarCarrito";
-import "./card.css";
-import ComponenteSkeleton from "./SkeletonCard";
 import { useCountStore } from "../store/ContadorCarrito";
+import "./card.css";
+import ModalAgregarCarrito from "./ModalAgregarCarrito";
+import ComponenteSkeleton from "./SkeletonCard";
 
 const Card = ({ image }) => {
   const [productos, setProductos] = useState([]); // Inicializa como array vacío
@@ -51,18 +49,20 @@ const Card = ({ image }) => {
         {productos.map((producto, i) => (
           <div key={i} className="card col-3 m-2 d-flex align-items-sm-center">
             <img
-              src={image}
-              alt={producto.nombre ? producto.nombre : ""}
+              src={image} // Cambia a imagen dinámica
+              alt={producto.Nombre ? producto.Nombre : ""}
               className="image"
             />
             <div className="info align-items-sm-center d-flex flex-column">
               <h2>{producto.Nombre ? producto.Nombre : ""}</h2>
-              <p className="price">${producto ? producto.Precio : ""}</p>
-              <p className="price">
-                {producto.Descripcion ? producto.Descripcion : ""}
-              </p>
+              <p className="price">${producto.Precio}</p>
+              <p className="price">{producto.Descripcion}</p>
 
-              <ModalAgregarCarrito sumar={sumar} />
+              <ModalAgregarCarrito 
+                sumar={sumar} 
+                imagenProducto={image} // Pasamos la imagen al modal
+                nombreProducto={producto.Nombre}  // Pasamos el nombre al modal
+              />
             </div>
           </div>
         ))}

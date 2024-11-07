@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const ModalAgregarCarrito = ({ sumar }) => {
+const ModalAgregarCarrito = ({ sumar, imagenProducto, nombreProducto }) => {
   const abrirModal = () => {
     const getCantidad = () => {
       return (
@@ -29,11 +29,11 @@ const ModalAgregarCarrito = ({ sumar }) => {
     };
 
     Swal.fire({
-      imageUrl: "https://placeholder.pics/svg/300x1500",
+      imageUrl: imagenProducto, // Usamos la imagen del producto
       imageHeight: 150,
-      imageAlt: "A tall image",
-      title: "Camisa",
-      text: "Caracteristicas?",
+      imageAlt: nombreProducto, // El nombre del producto es más descriptivo aquí
+      title: nombreProducto,
+      text: "Características?",
       html: `
         <label for="talleS">Cantidad</label>
         <input
