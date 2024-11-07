@@ -1,17 +1,72 @@
 import Swal from "sweetalert2";
-import { useCountStore } from "../store/ContadorCarrito";
 
-const ModalAgregarCarrito = ({ producto }) => {
-  // El producto ya se recibe como prop, no hay necesidad de usar useCountStore aquí
-  const { agregarProducto } = useCountStore();
-
+const ModalAgregarCarrito = ({ sumar }) => {
   const abrirModal = () => {
-    // ... (tu lógica actual para obtener la cantidad, talle y color)
+    const getCantidad = () => {
+      return (
+        parseInt(document.querySelector('input[type="number"]').value) || 0
+      );
+    };
+
+    const getTalle = () => {
+      const radios = document.querySelectorAll('input[name="talle"]');
+      for (const radio of radios) {
+        if (radio.checked) {
+          return radio.value;
+        }
+      }
+      return null;
+    };
+
+    const getColor = () => {
+      const radios = document.querySelectorAll('input[name="color"]');
+      for (const radio of radios) {
+        if (radio.checked) {
+          return radio.value;
+        }
+      }
+      return null;
+    };
 
     Swal.fire({
-      // ... (configuración del SweetAlert)
-      // ... (tu lógica actual para obtener la cantidad, talle y color)
+      imageUrl: "https://placeholder.pics/svg/300x1500",
+      imageHeight: 150,
+      imageAlt: "A tall image",
+      title: "Camisa",
+      text: "Caracteristicas?",
+      html: `
+        <label for="talleS">Cantidad</label>
+        <input
+          type="number"
+          min="0"
+          max="10"
+          value="0"
+        />
+        <br><br>
+        <h4>Selecciona un talle:</h4>
+        <input type="radio" id="talleS" name="talle" value="S">
+        <label for="talleS">Talle S</label><br>
 
+        <input type="radio" id="talleM" name="talle" value="M">
+        <label for="talleM">Talle M</label><br>
+
+        <input type="radio" id="talleL" name="talle" value="L">
+        <label for="talleL">Talle L</label><br>
+
+        <h4>Selecciona un color:</h4>
+        <input type="radio" id="colorRojo" name="color" value="Rojo">
+        <label for="colorRojo" style="color: red;">Rojo</label><br>
+
+        <input type="radio" id="colorVerde" name="color" value="Verde">
+        <label for="colorVerde" style="color: green;">Verde</label><br>
+
+        <input type="radio" id="colorAzul" name="color" value="Azul">
+        <label for="colorAzul" style="color: blue;">Azul</label><br>
+      `,
+      showDenyButton: true,
+      confirmButtonText: "Agregar",
+      denyButtonText: `Cancelar`,
+      allowOutsideClick: false,
       preConfirm: () => {
         const cantidad = getCantidad();
         const talle = getTalle();
@@ -33,8 +88,7 @@ const ModalAgregarCarrito = ({ producto }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         const { cantidad, talle, color } = result.value;
-        // No se necesita la función agregarProducto aquí, ya que es manejada por el componente Card.jsx
-        agregarProducto(producto, cantidad); 
+        sumar(cantidad);
       }
     });
   };
