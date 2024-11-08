@@ -60,8 +60,8 @@ const Card = ({ image }) => {
 
               <ModalAgregarCarrito 
                 sumar={sumar} 
-                imagenProducto={image} // Pasamos la imagen al modal
-                nombreProducto={producto.Nombre}  // Pasamos el nombre al modal
+                imagenProducto={image} 
+                nombreProducto={producto.Nombre}  
               />
             </div>
           </div>

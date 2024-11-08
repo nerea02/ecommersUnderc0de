@@ -29,9 +29,9 @@ const ModalAgregarCarrito = ({ sumar, imagenProducto, nombreProducto }) => {
     };
 
     Swal.fire({
-      imageUrl: imagenProducto, // Usamos la imagen del producto
+      imageUrl: imagenProducto, 
       imageHeight: 150,
-      imageAlt: nombreProducto, // El nombre del producto es más descriptivo aquí
+      imageAlt: nombreProducto, 
       title: nombreProducto,
       text: "Características?",
       html: `
