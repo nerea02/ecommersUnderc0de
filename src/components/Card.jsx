@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { useCountStore } from "../store/ContadorCarrito";
+
 import "./card.css";
 import ModalAgregarCarrito from "./ModalAgregarCarrito";
 import ComponenteSkeleton from "./SkeletonCard";
 
 const Card = ({ image }) => {
-  const [productos, setProductos] = useState([]); // Inicializa como array vacío
-  const [error, setError] = useState(null); // Estado para errores
-  const [estadoApi, setEstadoApi] = useState(false); // Estado para errores
-  const [valor, setValor] = useState(0);
-  const { sumar } = useCountStore();
+  const [productos, setProductos] = useState([]);
+  const [error, setError] = useState(null);
+  const [estadoApi, setEstadoApi] = useState(false);
+  
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +33,10 @@ const Card = ({ image }) => {
       }
     };
 
-    fetchData(); // Llama a la función fetchData
+    fetchData(); 
   }, []);
 
-  // me verifica que la api me halla traido los datos espera unos segundo mostrando el skeleton y despues las imagenes
+
   if (!estadoApi) {
     return (
       <>
@@ -59,7 +59,7 @@ const Card = ({ image }) => {
               <p className="price">{producto.Descripcion}</p>
 
               <ModalAgregarCarrito 
-                sumar={sumar} 
+                idProducto={producto.IdProducto} // Pasamos solo el `idProducto`
                 imagenProducto={image} 
                 nombreProducto={producto.Nombre}  
               />

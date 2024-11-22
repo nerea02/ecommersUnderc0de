@@ -1,6 +1,9 @@
 import Swal from "sweetalert2";
+import { useCarritoStore } from "../store/UseStoreCarritoJs.js"; // Importa el store
 
-const ModalAgregarCarrito = ({ sumar, imagenProducto, nombreProducto }) => {
+const ModalAgregarCarrito = ({ idProducto, imagenProducto, nombreProducto }) => {
+  const { agregarProducto } = useCarritoStore();
+
   const abrirModal = () => {
     const getCantidad = () => {
       return (
@@ -22,44 +25,36 @@ const ModalAgregarCarrito = ({ sumar, imagenProducto, nombreProducto }) => {
       const radios = document.querySelectorAll('input[name="color"]');
       for (const radio of radios) {
         if (radio.checked) {
-          return radio.value;
+          return radio.value; // El color puede ser "Rojo", "Verde", etc.
         }
       }
       return null;
     };
 
     Swal.fire({
-      imageUrl: imagenProducto, 
+      imageUrl: imagenProducto,
       imageHeight: 150,
-      imageAlt: nombreProducto, 
+      imageWidth: 150,
+      imageAlt: nombreProducto,
       title: nombreProducto,
       text: "Características?",
       html: `
-        <label for="talleS">Cantidad</label>
-        <input
-          type="number"
-          min="0"
-          max="10"
-          value="0"
-        />
+        <label for="cantidad">Cantidad</label>
+        <input type="number" id="cantidad" min="1" max="10" value="1" />
         <br><br>
         <h4>Selecciona un talle:</h4>
         <input type="radio" id="talleS" name="talle" value="S">
         <label for="talleS">Talle S</label><br>
-
         <input type="radio" id="talleM" name="talle" value="M">
         <label for="talleM">Talle M</label><br>
-
         <input type="radio" id="talleL" name="talle" value="L">
         <label for="talleL">Talle L</label><br>
-
+        <br>
         <h4>Selecciona un color:</h4>
         <input type="radio" id="colorRojo" name="color" value="Rojo">
         <label for="colorRojo" style="color: red;">Rojo</label><br>
-
         <input type="radio" id="colorVerde" name="color" value="Verde">
         <label for="colorVerde" style="color: green;">Verde</label><br>
-
         <input type="radio" id="colorAzul" name="color" value="Azul">
         <label for="colorAzul" style="color: blue;">Azul</label><br>
       `,
@@ -83,12 +78,14 @@ const ModalAgregarCarrito = ({ sumar, imagenProducto, nombreProducto }) => {
         if (!color) {
           return Swal.showValidationMessage(`Por favor, seleccione un color.`);
         }
-        return { cantidad, talle, color };
+
+        return { cantidad, talle, color }; // Retorna la información de la selección
       },
     }).then((result) => {
       if (result.isConfirmed) {
         const { cantidad, talle, color } = result.value;
-        sumar(cantidad);
+        // Agregar el producto al carrito con idProducto, talle y color
+        agregarProducto(idProducto, color, cantidad, talle); // Usamos idProducto, color y talle
       }
     });
   };
@@ -101,3 +98,4 @@ const ModalAgregarCarrito = ({ sumar, imagenProducto, nombreProducto }) => {
 };
 
 export default ModalAgregarCarrito;
+
