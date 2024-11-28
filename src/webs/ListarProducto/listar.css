@@ -1,0 +1,42 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  h2.text-center {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .table {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+  }
+  
+  .table thead th {
+    font-weight: 500;
+  }
+  
+  .table tbody td {
+    font-weight: 400;
+  }
+  .btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  .table tr.rounded-3 {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden; /* Asegura que el contenido respete el borde redondeado */
+  }
+  

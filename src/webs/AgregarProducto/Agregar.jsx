@@ -118,10 +118,10 @@ const Agregar = () => {
               required
             >
               <option value="">Seleccione una categoría</option>
-              <option value="Electrónica">Electrónica</option>
-              <option value="Ropa">Ropa</option>
-              <option value="Hogar">Hogar</option>
-              <option value="Deportes">Deportes</option>
+              <option value="Remeras">Remeras</option>
+              <option value="Gorras">Gorras</option>
+              <option value="Tazas">Tazas</option>
+              <option value="Zapatillas">Zapatillas</option>
             </select>
           </div>
 

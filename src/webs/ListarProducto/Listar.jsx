@@ -2,6 +2,8 @@ import React from "react";
 import ButtonHeader from "../../components/ButtonHeader";
 import Footer from "../../components/Footer";
 import TopHeader from "../../components/TopHeader";
+import "./listar.css";
+
 
 const Listar = () => {
   return (
@@ -44,16 +46,16 @@ const Listar = () => {
               <td>4.5</td>
               <td>Activo</td>
               <td>
-                <button className="btn btn-success btn-sm me-2">
+                <button className="btn btn-success btn-sm me-2 ">
                   <i className="fa-solid fa-check"></i> Activar
                 </button>
-                <button className="btn btn-danger btn-sm">
+                <button className="btn btn-danger btn-sm ">
                   <i className="fa-solid fa-trash"></i> Eliminar
                 </button>
               </td>
             </tr>
-            <tr>
-              <td>2</td>
+            <tr className="rounded-3">
+              <td >2</td>
               <td>Producto 2</td>
               <td>Descripción del producto 2</td>
               <td>$150</td>
