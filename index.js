@@ -15,7 +15,9 @@ import indexRouter from './routes/routes.js';
 import sexo from './routes/sexo.js';
 import talles from './routes/talles.js';
 import usuarios from './routes/usuarios.js';
-
+import ABMListar from './routes/ABMListar.js';
+import variantesProductos from './routes/VarianteProducto.js';
+import ProductoConCalificacionCantidad from './routes/ProductoConCalificacionCantidad.js';
 
 
 
@@ -42,7 +44,9 @@ app.use('/api', reintegros);
 app.use('/api', sexo);
 app.use('/api', talles);
 app.use('/api', usuarios);
-
+app.use('/api', ABMListar);
+app.use('/api', variantesProductos);
+app.use('/api', ProductoConCalificacionCantidad);
 
 
 

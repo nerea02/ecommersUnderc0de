@@ -8,19 +8,19 @@ router.get('/productos', async (req, res) => {
 });
 // Cargar nuevo producto
 router.post('/nuevoProducto', async (req, res) => {
-    const { productos } = req.body; // Esperamos un array de productos
+    const { productos } = req.body; 
 
     if (!Array.isArray(productos) || productos.length === 0) {
         return res.status(400).json({ message: "Debe proporcionar una lista válida de productos" });
     }
 
     try {
-        // Generamos los valores a insertar
+        
         const values = productos.map(({ IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio }) => 
             [IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio]
         );
 
-        // Query para insertar múltiples filas
+        
         const query = `INSERT INTO productos (IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio) VALUES ?`;
 
         // Ejecutamos la consulta
