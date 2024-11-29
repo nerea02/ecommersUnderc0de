@@ -14,9 +14,7 @@ export default function Index() {
       <ButtonHeader />
 
       <div className="d-flex mt-5 justify-content-center align-items-center ">
-      <Link to="/GaleriaCompra" className="btn btn-primary btn-lg">
-        Ir a la Galería de Compras
-      </Link>
+      
     </div>
       <div className="contenedorIndex">
         <div className=" " style={{ backgroundColor: "#F5F7FA" }}>

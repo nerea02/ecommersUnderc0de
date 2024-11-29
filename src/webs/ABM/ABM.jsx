@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ButtonHeader from "../../components/ButtonHeader.jsx";
 import Footer from "../../components/Footer.jsx";
 import TopHeader from "../../components/TopHeader.jsx";
@@ -9,43 +10,51 @@ import './ABM.css';
 
 const ABM = () => {
   return (
-    <>
+    <div className="h-100 contenedorABM">
+
       <TopHeader />
-      <ButtonHeader />
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-6 mb-4">
-            <button className="btn btn-primary w-100 btn-lg ">
+      <ButtonHeader  numero="1"/>
+      <div className="container d-flex flex-column justify-content-md-center ">
+        <div className="row h-50">
+          <div className="col-6 mb-4 d-flex ">
+          <Link className="btn btn-ABM btn-lg btn-primary d-flex flex-column justify-content-center w-100" to="/agregar">
             <i className="fas fa-plus">
-            <br />
+            <br /><br />
               agregar producto
             </i>
              
-            </button>
+            </Link>
           </div>
           
           <div className="col-6 mb-4">
-            <button className="btn btn-warning w-100 btn-lg ">
+          <Link className="btn btn-warning w-100 btn-lg btn-ABM  d-flex flex-column justify-content-center " to="/editar">
               <i className="fas  fa-file-pen">
-                <br />
+                <br /><br />
                 Editar producto
               </i>
-            </button>
+            </Link>
           </div>
         </div>
         <div className="row">
-          <div className="col-6 mb-4">
-            <button className="btn btn-success w-100 btn-lg">
+          <div className="col-6 h-30 mb-4">
+            
+            <Link className="btn btn-success w-100 btn-lg btn-ABM  d-flex flex-column justify-content-center " to="/listar">
+           
               <i className="fas fa-list">
-                <br />
+                <br /><br />
                 Listar producto
               </i>
-            </button>
+          </Link>
+            
           </div>
         </div>
       </div>
+      <div className="contenedorFooter">
+
       <Footer />
-    </>
+    
+      </div>
+    </div>
   );
 };
 

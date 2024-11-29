@@ -1,4 +1,23 @@
+.contenedorABM {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.container {
+  flex: 1; /* Hace que el contenedor ocupe el espacio disponible */
+}
+
+.contenedorFooter {
+  margin-top: auto; /* Empuja el footer hacia abajo */
+}
+
 .fas {
-    font-size: 2rem; /* Ajusta el tamaño */
-    margin-right: 10px; /* Espacio entre el ícono y el texto */
-  }
+  font-size: 2rem; /* Ajusta el tamaño */
+  margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.btn-ABM {
+  min-height: 10em;
+}

@@ -10,6 +10,10 @@ export default function OpcionesHeader({ opcione }) {
             ? "/AboutUs"
             : opcione == "NUEVAS TENDENCIAS"
             ? "/newTrends"
+            : opcione == "ABM"
+            ? "/ABM"
+            : opcione == "INICIO"
+            ? "/"
             : ""
         }
       >

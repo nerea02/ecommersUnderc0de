@@ -2,7 +2,7 @@ import "./ButtonHeader.css";
 import Carrito from "./Carrito";
 import OpcionesHeader from "./OpcionesHeaders";
 
-const ButtonHeader = () => {
+const ButtonHeader = ({ numero }) => {
   return (
     <header>
       <nav className="d-flex justify-content-center navbar">
@@ -12,6 +12,13 @@ const ButtonHeader = () => {
           <OpcionesHeader opcione="NUEVAS TENDENCIAS" />
           <OpcionesHeader opcione="SOBRE NOSOTROS" />
           <OpcionesHeader opcione="CONTACTO" />
+          
+          {/* Mostrar ABM y Carrito solo si numero es igual a 1 */}
+          {numero != 1 && (
+            <>
+              <OpcionesHeader opcione="ABM" />
+            </>
+          )}
           <Carrito />
         </ul>
       </nav>
