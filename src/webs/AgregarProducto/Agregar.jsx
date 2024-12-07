@@ -6,7 +6,7 @@ import Colores from "../../components/Colores.jsx";
 import Categoria from "../../components/Categoria.jsx";
 import Talle from "../../components/Talle.jsx";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2';  // Importar SweetAlert2
+import Swal from 'sweetalert2';  
 
 const Agregar = () => {
   const [product, setProduct] = useState({
@@ -20,7 +20,7 @@ const Agregar = () => {
     calificacion: "",
   });
 
-  // Funciones para manejar selecciones específicas
+ 
   const handleTalleSelect = (talle) => {
     setProduct((prev) => ({ ...prev, talle }));
   };
@@ -33,7 +33,7 @@ const Agregar = () => {
     setProduct((prev) => ({ ...prev, color }));
   };
 
-  // Manejo de cambios en inputs
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduct((prev) => ({ ...prev, [name]: value }));
@@ -47,12 +47,12 @@ const Agregar = () => {
       return;
     }
 
-    product.precio = parseFloat(product.precio);  // Asegúrate de que 'precio' sea un número decimal
+    product.precio = parseFloat(product.precio);  
 
     product.categoria = parseInt(product.categoria, 10);
     product.color = parseInt(product.color, 10);
 
-    product.talle = product.talle ? parseInt(product.talle, 10) : 4;  // Si talle está vacío, asignamos 4
+    product.talle = product.talle ? parseInt(product.talle, 10) : 4;  
 
     console.log("Producto a enviar: ", product);
 
@@ -68,20 +68,19 @@ const Agregar = () => {
       const data = await response.json();
       console.log("Producto agregado correctamente", data);
 
-      // Mostrar alerta de éxito con SweetAlert2
+
       Swal.fire({
         icon: 'success',
         title: 'Producto agregado correctamente',
         text: 'El producto se ha agregado con éxito',
         confirmButtonText: 'Aceptar'
       }).then(() => {
-        // Redirigir a la página /abm después de aceptar la alerta
-        window.location.href = '/abm'; // Esto redirige al usuario a /abm
+       
+        window.location.href = '/abm'; 
       });
     } catch (error) {
       console.error("Error en la solicitud:", error);
 
-      // Mostrar alerta de error con SweetAlert2
       Swal.fire({
         icon: 'error',
         title: 'Error',
