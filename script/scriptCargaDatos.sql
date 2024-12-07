@@ -1,67 +1,109 @@
 use ecommerce;
 
 
-select * from niveles;
-select * from historial;
-select * from calificacionporproducto;
-select * from categorias;
-select * from clientes;
-select * from usuario;
-SELECT * FROM metodopago;
-select * from productosporventas;
-select * from productos;
-SELECT * FROM reintegro;
-select * from talle;
-select * from colores;
-select * from sexo;
-select * from variantesproductos;
+INSERT INTO Niveles (Descripcion, Estado) VALUES 
+('Básico', true),
+('Intermedio', true),
+('Avanzado', true);
+
+INSERT INTO Sexo (Descripcion, Estado) VALUES 
+('Masculino', true),
+('Femenino', true),
+('Otro', true);
+
+INSERT INTO Clientes (IdSexo, IdNivel, DNI, Nombre, Apellido, Email, Tel, Contraseña, Estado) VALUES 
+(1, 2, 12345678, 'Juan', 'Pérez', 'juanperez@email.com', '1234567890', 'contraseña123', true),
+(2, 1, 23456789, 'Ana', 'Gómez', 'anagomez@email.com', '0987654321', 'contraseña456', true),
+(3, 3, 34567890, 'Alex', 'Martínez', 'alexmartinez@email.com', '5678901234', 'contraseña789', true);
+
+INSERT INTO MetodoPago (Descripcion, Estado) VALUES 
+('Tarjeta de crédito', true),
+('PayPal', true),
+('Transferencia bancaria', true);
+
+INSERT INTO Reintegro (Fecha, Estado) VALUES 
+('2024-11-15 10:30:00', true),
+('2024-11-16 14:00:00', true),
+('2024-11-17 16:30:00', true);
+
+INSERT INTO Categorias (Descripcion, Estado) VALUES 
+('Electrónica', true),
+('Ropa', true),
+('Hogar', true);
+
+INSERT INTO CalificacionPorProducto (IdProducto, Calificacion, Estado) VALUES 
+(1, 4, true),
+(2, 5, true),
+(3, 3, true);
+
+INSERT INTO Talle (Talle, Estado) VALUES 
+('S', true),
+('M', true),
+('L', true);
+
+INSERT INTO Colores (Color, Estado) VALUES 
+('Rojo', true),
+('Azul', true),
+('Negro', true);
+
+INSERT INTO Historial (IdCliente, IdReintegro, IdMetodoPago, Estado) VALUES 
+(1, 1, 2, true),
+(2, 2, 1, true),
+(3, 3, 3, true);
+
+INSERT INTO ProductosPorVentas (IdHistorial, IdVariante, Cantidad, Precio, Estado) VALUES 
+(1, 1, 2, 100.50, true),
+(2, 2, 1, 50.75, true),
+(3, 3, 3, 25.00, true);
+
+INSERT INTO Productos (IdCategoria, IdCalificacionProducto, Nombre, Descripcion, Imagen, Precio, Estado) VALUES 
+(1, 1, 'Smartphone', 'Teléfono móvil inteligente', 'smartphone.jpg', 599.99, true),
+(2, 2, 'Camiseta', 'Camiseta de algodón', 'camiseta.jpg', 19.99, true),
+(3, 3, 'Sofá', 'Sofá de tres plazas', 'sofa.jpg', 299.99, true);
+
+INSERT INTO VariantesProductos (IdTalle, IdProducto, IdColor, Cantidad, Estado) VALUES 
+(1, 1, 1, 50, true),
+(2, 2, 2, 100, true),
+(3, 3, 3, 10, true);
+
+INSERT INTO Usuario (Nombre, Apellido, Dni, Usuario, Contraseña, Estado) VALUES 
+('Admin', 'Super', 1, 'admin', 'admin123', true),
+('Juan', 'González', 2, 'juangonzalez', 'juan123', true),
+('Maria', 'Lopez', 3, 'marialopez', 'maria123', true);
 
 
-INSERT INTO talle (Talle) 
-VALUES 
-('S'),  
-('M'),   
-('L'),   
-('XL'); 
 
-INSERT INTO metodopago (Descripcion) VALUES ('Tarjeta de Crédito'),('PayPal'),('Transferencia Bancaria'),('Efectivo');
-INSERT INTO reintegro (Fecha, Estado) VALUES ('2024-10-05 14:30:00', true),('2024-10-04 10:15:00', false),('2024-10-03 09:00:00', true);
-INSERT INTO colores (color) VALUES ('Rojo'),('Azul'),('Verde'),('Amarillo'),('Negro');
-insert into sexo(Descripcion) values ("Masculino"),("Femenino"), ("otros");
-insert into categorias(Descripcion)values ("zapato"),("Remeras"),("tazas");
-INSERT INTO calificacionporproducto (IdProducto, Calificacion) VALUES (1, 5), (1, 4), (2, 3), (3, 5), (1, 5);
-insert into niveles( descripcion) values('Administrador'),('Cliente'),('Vendedor');
+DELIMITER $$
 
+CREATE PROCEDURE AgregarProductoCantidadCalificacionConImagen(
+    IN nombre VARCHAR(255),
+    IN descripcion TEXT,
+    IN color INT,
+    IN categoria INT,
+    IN cantidad INT,
+    IN talle INT,
+    IN precio DECIMAL(10, 2),
+    IN calificacion INT,
+    IN imagen VARCHAR(255)
+)
+BEGIN
+    DECLARE idProducto INT;
 
+    -- Inserta el producto en la tabla Productos
+    INSERT INTO Productos (IdCategoria, IdCalificacionProducto, Nombre, Descripcion, Precio, Imagen)
+    VALUES (categoria, calificacion, nombre, descripcion, precio, imagen);
 
-INSERT INTO productos (IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio)
-VALUES(1, 1, true, 'Camiseta', 'Camiseta de algodón', 19.99),(2, 2, true, 'Zapatos', 'Zapatos deportivos', 49.99),
-(1, 3, false, 'Pantalones', 'Pantalones de mezclilla', 39.99);
+    -- Obtiene el ID del producto insertado
+    SET idProducto = LAST_INSERT_ID();
 
+    -- Inserta la variante del producto en la tabla VariantesProductos
+    INSERT INTO VariantesProductos (IdProducto, Cantidad, IdTalle, IdColor)
+    VALUES (idProducto, cantidad, talle, color);
 
+    -- Retorna el id del producto insertado
+    SELECT idProducto AS ProductoId;
 
+END$$
 
+DELIMITER ;
 
-INSERT INTO VariantesProductos (IdTalle, IdProducto, IdColor, Cantidad)
-VALUES
-(1, 1, 1, 100),  
-(2, 1, 2, 50),   
-(1, 2, 1, 200);  
-
-
-
-INSERT INTO clientes (IdSexo, IdNivel, Estado, DNI, Nombre, Apellido, Email, Tel, Fecha, Contraseña) 
-VALUES (1, 1, true, 12345678, 'Juan', 'Pérez', 'juan.perez@example.com', '123-456-7890', '2024-10-05 14:30:00', 'miPassword123'),
-(2, 3, false, 87654321, 'María', 'Gómez', 'maria.gomez@example.com', '098-765-4321', '2024-09-20 09:15:00', 'otroPassword456');
-
-INSERT INTO historial (IdCliente, IdReintegro, Fecha, IdMetodoPago)
-VALUES
-(1, 1, '2024-10-05 12:45:00', 1), 
-(2, 2, '2024-09-30 16:30:00', 2), 
-(1, 3, '2024-10-01 10:15:00', 3),  
-(2, 1, '2024-10-02 14:00:00', 4);
-
-
-INSERT INTO productosporventas (IdHistorial, IdVariante, Cantidad, Precio)
-VALUES(1, 1, 2, 19.99), 
-(3, 1, 3, 15.00); 
