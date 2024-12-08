@@ -4,7 +4,7 @@ import { pool } from "../db.js"; // Asegúrate de que 'pool' se está importando
 const router = Router();
 
 router.put('/AgregarProductoCantidadCalificacion', async (req, res) => {
-    let { nombre, descripcion, color, categoria, cantidad, talle, precio, calificacion } = req.body;
+    let { nombre, descripcion, color, categoria, cantidad, talle, precio, calificacion, imagen } = req.body;
 
     // Asignar valor predeterminado a talle si está vacío
     if (!talle) {
@@ -18,12 +18,15 @@ router.put('/AgregarProductoCantidadCalificacion', async (req, res) => {
 
     try {
         const idCalificacionProducto = 1;
+        const calificacionQuery =`
+            INSERT INTO calificacionporproducto (IdProducto, Calificacion)
+            VALUES (?, ?)`;
 
         const productoQuery = `
-            INSERT INTO Productos (IdCategoria, IdCalificacionProducto, Nombre, Descripcion, Precio, Imagen)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO Productos (IdCategoria, Nombre, Descripcion, Precio, Imagen)
+            VALUES (?, ?, ?, ?, ?)
         `;
-        const [productoResult] = await pool.query(productoQuery, [categoria, idCalificacionProducto, nombre, descripcion, precio, "default_image.jpg"]);
+        const [productoResult] = await pool.query(productoQuery, [categoria, nombre, descripcion, precio, imagen]);
         const idProducto = productoResult.insertId;
 
         const cantidadQuery = `
@@ -31,6 +34,7 @@ router.put('/AgregarProductoCantidadCalificacion', async (req, res) => {
             VALUES (?, ?, ?, ?)
         `;
         await pool.query(cantidadQuery, [idProducto, cantidad, talle, color]);
+        await pool.query(calificacionQuery, [idProducto, calificacion]);
 
         res.json({ message: "Producto, cantidad y calificación agregados correctamente", idProducto });
     } catch (error) {
