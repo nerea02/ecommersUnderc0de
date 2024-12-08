@@ -49,7 +49,12 @@ CREATE TABLE Categorias (
   Estado boolean DEFAULT true
 );
 
-
+CREATE TABLE CalificacionPorProducto (
+  IdCalificacionProducto int PRIMARY KEY AUTO_INCREMENT,
+  IdProducto int,
+  Calificacion int ,
+  Estado boolean DEFAULT true
+);
 
 CREATE TABLE Talle (
   IdTalle int PRIMARY KEY AUTO_INCREMENT,
@@ -85,27 +90,17 @@ CREATE TABLE ProductosPorVentas (
   FOREIGN KEY(IdHistorial) REFERENCES Historial(IdHistorial) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
-
-
 CREATE TABLE Productos (
   IdProducto int PRIMARY KEY AUTO_INCREMENT,
   IdCategoria int,
+  IdCalificacionProducto int,
   Nombre varchar(200),
   Descripcion varchar(200),
   Imagen varchar(300),
   Precio decimal,
   Estado boolean DEFAULT true,
-  FOREIGN KEY(IdCategoria) REFERENCES Categorias(IdCategoria) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
-CREATE TABLE CalificacionPorProducto (
-  IdCalificacionProducto int PRIMARY KEY AUTO_INCREMENT,
-  IdProducto int,
-  Calificacion int,
-  Estado boolean DEFAULT true,
-  FOREIGN KEY(IdProducto) REFERENCES Productos(IdProducto) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY(IdCategoria) REFERENCES Categorias(IdCategoria) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(IdCalificacionProducto) REFERENCES CalificacionPorProducto(IdCalificacionProducto) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE VariantesProductos (
@@ -137,3 +132,4 @@ FOREIGN KEY (IdVariante)
 REFERENCES VariantesProductos(IdVariante) 
 ON DELETE CASCADE 
 ON UPDATE CASCADE;
+
