@@ -49,6 +49,7 @@ const Card = ({ image }) => {
       <div className="row justify-content-evenly d-flex">
         {productos.map((producto) => (
           <div key={producto.codigoProducto} className="card col-3 m-2 d-flex align-items-sm-center">
+          
             
             <img
               src={producto.imagen} 

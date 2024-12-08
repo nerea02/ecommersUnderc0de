@@ -5,6 +5,7 @@ import Footer from "../components/Footer.jsx";
 import Hero from "../components/Hero.jsx";
 import TopHeader from "../components/TopHeader.jsx";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   return (
