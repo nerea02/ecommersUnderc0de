@@ -1,8 +1,8 @@
-import ButtonHeader from "../components/ButtonHeader.jsx";
-import TopHeader from "../components/TopHeader.jsx";
-import Footer from "../components/Footer.jsx";
-import { useCarritoStore } from "../store/UseStoreCarritoJs.js"; // Importa el store
 import { Link } from "react-router-dom";
+import ButtonHeader from "../components/ButtonHeader.jsx";
+import Footer from "../components/Footer.jsx";
+import TopHeader from "../components/TopHeader.jsx";
+import { useCarritoStore } from "../store/UseStoreCarritoJs.js"; // Importa el store
 export default function GaleriaCompra() {
   const carrito = useCarritoStore((state) => state.carrito); // Obtén el carrito
   const cantidadTotal = useCarritoStore((state) => state.cantidadTotal); // Obtén la cantidad total
