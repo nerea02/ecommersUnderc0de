@@ -1,14 +1,21 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import ButtonHeader from "../../components/ButtonHeader";
 import Footer from "../../components/Footer";
 import TopHeader from "../../components/TopHeader";
 import "./listar.css";
-import { Link } from "react-router-dom";
 
 const Listar = () => {
   const [listar, setListar] = useState([]);
   const [error, setError] = useState(null);
-  const [mensaje, setMensaje] = useState(""); 
+  const [mensaje, setMensaje] = useState("");
+  const [editar, setEditar]= useState();
+const navigate = useNavigate();
+  const EditarProducto = (productoEditar) => {
+    
+     navigate(`/Editar?id=${productoEditar}`);
+    
+  }
 
   const BajaProducto = async (idvariante) => {
     console.log("Baja Producto: " +idvariante);
@@ -144,12 +151,22 @@ const Listar = () => {
                 <td className="align-middle">{lista.calificacion}</td>
                 <td className="align-middle">{lista.estado === 1 ? "Activo" : "Inactivo"}</td>
                 <td className="align-middle">
-                  <button className="btn btn-success btn-sm me-2" onClick={() => AltaProducto(lista.codigoProducto)}>
-                    <i className="fa-solid fa-check"></i> Habilitar
-                  </button>
-                  <button className="btn btn-danger btn-sm" onClick={() => BajaProducto(lista.codigoProducto)}>
-                    <i className="fa-solid fa-trash"></i> Deshabilitar
-                  </button>
+                  {lista.estado === 1 ? 
+                   <button className="btn btn-danger btn-sm" onClick={() => BajaProducto(lista.codigoProducto)}>
+                   <i className="fa-solid fa-trash"></i> Deshabilitar
+                 </button>
+                 :
+                 <button className="btn btn-success btn-sm me-2" onClick={() => AltaProducto(lista.codigoProducto)}>
+                 <i className="fa-solid fa-check"></i> Habilitar
+               </button>
+                  
+                
+                }
+
+              <button className="btn btn-danger btn-sm" onClick={() => EditarProducto(lista.codigoProducto)}>
+                   <i className="fa-solid fa-trash"></i> Editar
+                 </button>
+
                 </td>
               </tr>
             ))}

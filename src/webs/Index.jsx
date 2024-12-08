@@ -1,11 +1,10 @@
 import ButtonHeader from "../components/ButtonHeader.jsx";
-import TopHeader from "../components/TopHeader.jsx";
-import Hero from "../components/Hero.jsx";
-import Chip from "../components/Chip.jsx";
-import "./index.css";
 import Card from "../components/Card.jsx";
+import Chip from "../components/Chip.jsx";
 import Footer from "../components/Footer.jsx";
-import { Link } from "react-router-dom";
+import Hero from "../components/Hero.jsx";
+import TopHeader from "../components/TopHeader.jsx";
+import "./index.css";
 
 export default function Index() {
   return (

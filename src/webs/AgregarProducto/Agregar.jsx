@@ -1,12 +1,11 @@
 import React, { useState } from "react";
+import Swal from 'sweetalert2';
 import ButtonHeader from "../../components/ButtonHeader.jsx";
-import Footer from "../../components/Footer.jsx";
-import TopHeader from "../../components/TopHeader.jsx";
-import Colores from "../../components/Colores.jsx";
 import Categoria from "../../components/Categoria.jsx";
+import Colores from "../../components/Colores.jsx";
+import Footer from "../../components/Footer.jsx";
 import Talle from "../../components/Talle.jsx";
-import { Link } from "react-router-dom";
-import Swal from 'sweetalert2';  
+import TopHeader from "../../components/TopHeader.jsx";
 
 const Agregar = () => {
   const [product, setProduct] = useState({
@@ -18,6 +17,7 @@ const Agregar = () => {
     cantidad: "",
     precio: "",
     calificacion: "",
+    imagen:"",
   });
 
  
@@ -181,6 +181,20 @@ const Agregar = () => {
               required
             />
           </div>
+          <div className="mb-3">
+            <label htmlFor="imagen" className="form-label">Imagen</label>
+            <input
+              type="text"
+              className="form-control"
+              id="imagen"
+              name="imagen"
+              value={product.imagen}
+              onChange={handleChange}
+              
+              required
+            />
+          </div>
+          
 
           <button type="submit" className="btn btn-primary mb-5">Agregar Producto</button>
         </form>

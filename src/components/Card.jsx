@@ -51,7 +51,7 @@ const Card = ({ image }) => {
           <div key={producto.codigoProducto} className="card col-3 m-2 d-flex align-items-sm-center">
             
             <img
-              src={image} 
+              src={producto.imagen} 
               alt={producto.nombre ? producto.nombre : ""}
               className="image"
             />
@@ -62,7 +62,7 @@ const Card = ({ image }) => {
 
               <ModalAgregarCarrito 
                 idProducto={producto.codigoProducto} 
-                imagenProducto={image}  
+                imagenProducto={producto.imagen}  
                 nombreProducto={producto.nombre}  
               />
             </div>
