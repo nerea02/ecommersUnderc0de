@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { pool } from "../db.js";
 const router = Router();
+
 // Obtener todos los productos
 router.get('/productos', async (req, res) => {
     const [rows] = await pool.query('SELECT * FROM productos');
     res.json(rows);
 });
+
 // Cargar nuevo producto
 router.post('/nuevoProducto', async (req, res) => {
     const { productos } = req.body; 
@@ -15,12 +17,10 @@ router.post('/nuevoProducto', async (req, res) => {
     }
 
     try {
-        
         const values = productos.map(({ IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio }) => 
             [IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio]
         );
 
-        
         const query = `INSERT INTO productos (IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio) VALUES ?`;
 
         // Ejecutamos la consulta
@@ -35,13 +35,15 @@ router.post('/nuevoProducto', async (req, res) => {
         return res.status(500).json({ message: 'Ocurrió un error al guardar los productos', error: error.message });
     }
 });
+
+// Actualizar producto
 router.put('/actualizarProducto/:id', async (req, res) => {
     const { id } = req.params; // Obtener el ID del producto a actualizar
-    const { IdCategoria, IdCalificacionProducto, Estado, Nombre, Descripcion, Precio } = req.body; // Obtener los nuevos valores
+    const { IdCategoria, Nombre, Descripcion, Imagen, Precio } = req.body; // Obtener los nuevos valores
 
     // Validar que al menos uno de los campos no esté vacío
-    if (IdCategoria === undefined && IdCalificacionProducto === undefined && Estado === undefined && 
-        Nombre === undefined && Descripcion === undefined && Precio === undefined) {
+    if (IdCategoria === undefined && Nombre === undefined && Descripcion === undefined && 
+        Imagen === undefined && Precio === undefined) {
         return res.status(400).json({ message: "Se debe proporcionar al menos un campo para actualizar" });
     }
 
@@ -52,14 +54,6 @@ router.put('/actualizarProducto/:id', async (req, res) => {
         updates.push('IdCategoria = ?');
         params.push(IdCategoria);
     }
-    if (IdCalificacionProducto !== undefined) {
-        updates.push('IdCalificacionProducto = ?');
-        params.push(IdCalificacionProducto);
-    }
-    if (Estado !== undefined) {
-        updates.push('Estado = ?');
-        params.push(Estado);
-    }
     if (Nombre !== undefined) {
         updates.push('Nombre = ?');
         params.push(Nombre);
@@ -67,6 +61,10 @@ router.put('/actualizarProducto/:id', async (req, res) => {
     if (Descripcion !== undefined) {
         updates.push('Descripcion = ?');
         params.push(Descripcion);
+    }
+    if (Imagen !== undefined) {
+        updates.push('Imagen = ?');
+        params.push(Imagen);
     }
     if (Precio !== undefined) {
         updates.push('Precio = ?');
@@ -78,8 +76,8 @@ router.put('/actualizarProducto/:id', async (req, res) => {
 
     // Crear la consulta dinámica
     const query = `
-        UPDATE Productos SET 
-        ${updates.join(', ')}
+        UPDATE productos 
+        SET ${updates.join(', ')} 
         WHERE IdProducto = ?
     `;
 
@@ -97,6 +95,7 @@ router.put('/actualizarProducto/:id', async (req, res) => {
     }
 });
 
+// Alta lógica de producto
 router.put('/AltaLogicaProductos', async (req, res) => {
     const { id } = req.body; // Obtener el ID del producto a actualizar
 
@@ -114,6 +113,8 @@ router.put('/AltaLogicaProductos', async (req, res) => {
         return res.status(500).json({ message: 'Error al actualizar producto', error: error.message });
     }
 });
+
+// Baja lógica de producto
 router.put('/BajaLogicaProductos', async (req, res) => {
     const { id } = req.body; // Obtener el ID del producto a actualizar
 
@@ -131,7 +132,5 @@ router.put('/BajaLogicaProductos', async (req, res) => {
         return res.status(500).json({ message: 'Error al actualizar producto', error: error.message });
     }
 });
-
-
 
 export default router;
